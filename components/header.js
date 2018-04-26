@@ -1,4 +1,5 @@
 import { Component } from 'preact';
+import { route } from 'preact-router';
 import Toolbar from 'preact-material-components/Toolbar';
 import Drawer from 'preact-material-components/Drawer';
 import List from 'preact-material-components/List';
@@ -10,7 +11,10 @@ export default class Header extends Component {
     closeDrawer = () => { this.drawer.MDComponent.open = false; }
     openDrawer = () => (this.drawer.MDComponent.open = true);
     drawerRef = drawer => (this.drawer = drawer);
-    linkTo = path => () => { this.closeDrawer(); };
+    linkTo = path => () => { 
+        route(path);
+        this.closeDrawer();
+    };
     render() {
         return (
             <div>
